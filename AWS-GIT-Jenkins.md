@@ -22,24 +22,31 @@ EC2 is an Infrastructure-as-a-Service offering — you provision a virtual machi
 - **CLB (Classic Load Balancer)** — Legacy, rarely used now.
 
 **4. What is the difference between S3 storage classes?**
+
 Standard (frequent access), Standard-IA/One Zone-IA (infrequent access, cheaper storage but retrieval cost), Intelligent-Tiering (auto-moves objects based on access pattern), Glacier/Glacier Deep Archive (archival, cheapest, retrieval takes minutes to hours). Choice depends on access frequency and retrieval time tolerance.
 
 **5. What is an IAM Role vs an IAM User?**
+
 An IAM User represents a person or application with long-term credentials (access key/secret). An IAM Role is an identity with temporary permissions that can be assumed by users, applications, or AWS services (e.g., EC2 assuming a role to access S3) — no long-term credentials involved, which is more secure.
 
 **6. What is the difference between EBS and EFS?**
+
 EBS (Elastic Block Store) is block storage attached to a single EC2 instance at a time (within one AZ). EFS (Elastic File System) is a managed NFS file system that can be mounted concurrently by multiple EC2 instances across multiple AZs — good for shared storage use cases.
 
 **7. What is a VPC and what are its core components?**
+
 A VPC (Virtual Private Cloud) is an isolated virtual network within AWS. Core components: subnets (public/private), route tables, Internet Gateway (IGW) for public access, NAT Gateway (for private subnet outbound access), Security Groups, NACLs, and VPC peering/Transit Gateway for inter-VPC connectivity.
 
 **8. What is Auto Scaling and how does it work?**
+
 Auto Scaling automatically adjusts the number of EC2 instances in a group based on defined policies (target tracking, step scaling, scheduled scaling) tied to CloudWatch metrics like CPU utilization or request count. It ensures availability during load spikes and cost savings during low demand.
 
 **9. What is the difference between RDS Multi-AZ and Read Replicas?**
+
 Multi-AZ is for **high availability** — a synchronous standby copy in another AZ that fails over automatically during outages (not readable). Read Replicas are for **scaling read traffic** — asynchronous copies that can be in the same or different region and are readable, but don't provide automatic failover (in most engines).
 
 **10. What is CloudFormation vs Terraform?**
+
 CloudFormation is AWS-native Infrastructure-as-Code, using JSON/YAML templates, tightly integrated with AWS services and free to use. Terraform (by HashiCorp) is cloud-agnostic IaC using HCL, supports multi-cloud, and has a larger community/module ecosystem. Terraform is often preferred in multi-cloud shops; CloudFormation integrates faster with new AWS service features.
 
 ### Scenario-Based
@@ -54,6 +61,7 @@ CloudFormation is AWS-native Infrastructure-as-Code, using JSON/YAML templates, 
 - If it's memory-related, check for memory leaks using tools like `top`/`htop` or APM tools.
 
 **12. You need to migrate an on-prem MySQL database (500GB) to RDS with minimal downtime. How would you approach it?**
+
 Use **AWS DMS (Database Migration Service)** with continuous replication (CDC — Change Data Capture): first do a full load of existing data, then DMS keeps syncing ongoing changes. Once the target RDS is caught up, do a brief cutover — stop writes to source, let DMS finish the last sync, then repoint the application to RDS. This minimizes downtime to just the cutover window instead of the full transfer.
 
 **13. Your company wants to reduce EC2 costs by 40% without impacting production stability. What levers would you pull?**
