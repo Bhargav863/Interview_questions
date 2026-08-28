@@ -74,6 +74,7 @@ Use **AWS DMS (Database Migration Service)** with continuous replication (CDC â€
 - Consider Graviton (ARM) instances for compatible workloads (better price-performance).
 
 **14. A junior engineer accidentally deleted an S3 bucket with critical data. What could have prevented this, and how do you recover?**
+
 Prevention: Enable **S3 Versioning** (so deletes create delete markers, recoverable), enable **MFA Delete** on the bucket, and use **IAM policies/SCPs** to restrict `s3:DeleteBucket` to specific roles. Also maintain **cross-region replication** or backups via AWS Backup.
 Recovery: If versioning was on, restore by removing delete markers/reverting to prior object versions. If the bucket itself was deleted without versioning, recovery is only possible from backups/replication â€” this highlights why backups are non-negotiable for critical data.
 
