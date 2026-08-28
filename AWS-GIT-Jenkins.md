@@ -235,12 +235,5 @@ Combine with `expression {}` conditions for more complex branch-pattern logic if
 **16. After a Jenkins master crash, all job configurations and build history were lost because there was no backup. How do you prevent this going forward?**
 Implement regular backups of the `JENKINS_HOME` directory (using the **ThinBackup** or **Backup** plugin, or a scheduled cron job/script) covering job configs, plugins, credentials, and build history — stored off-server (e.g., S3). Additionally, treat Jenkins configuration as code where possible: use **Configuration as Code (JCasC)** plugin to define Jenkins system config in YAML (version-controlled), and store all Jenkinsfiles in SCM (not Jenkins UI) so pipeline logic itself is never solely dependent on the Jenkins instance. For critical setups, consider running Jenkins on Kubernetes with persistent volume backups, or evaluate HA configurations.
 
----
 
-## Quick Study Tips
-- For scenario questions, structure your answer as: **Diagnose → Root Cause → Fix → Prevention**. Interviewers care as much about your troubleshooting process as the final answer.
-- Be ready to draw architecture diagrams on a whiteboard/shared screen for the AWS 3-tier and CI/CD questions.
-- Practice explaining Git conflict resolution and rebase vs merge out loud — these come up in almost every DevOps interview.
-- For Jenkins, be comfortable writing a basic Declarative Jenkinsfile from scratch (stages: checkout, build, test, deploy) without looking it up.
 
-Good luck with your interviews! Let me know if you'd like a mock interview round, a deeper dive into any specific topic (e.g., Kubernetes, Docker, Terraform, Ansible), or scenario questions tailored to a specific company/role.
