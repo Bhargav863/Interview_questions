@@ -8,6 +8,7 @@
 ### Basic / Conceptual
 
 **1. What is the difference between EC2 and Lambda?**
+
 EC2 is an Infrastructure-as-a-Service offering — you provision a virtual machine, manage the OS, patching, scaling, and pay for the instance as long as it runs. Lambda is a serverless compute service — you upload code, AWS manages the underlying infrastructure, it scales automatically, and you pay only for execution time (per 100ms). Use EC2 for long-running, stateful, or custom-OS workloads; use Lambda for short-lived, event-driven, stateless tasks.
 
 **2. Explain the difference between Security Groups and NACLs.**
